@@ -264,14 +264,14 @@ router.delete('users/:id', () => {}).as('users.delete')
 You can now construct URLs using the route name within your templates or using the URL builder.
 
 ```ts
-const url = router.builder().make('users.delete', [user.id])
+const url = router.builder().params({ id: user.id }).make('users.delete')
 ```
 
 ```edge
 <form
   method='POST'
   action="{{
-    route('users.delete', [user.id], { formAction: 'delete' })
+    route('users.delete', { id: user.id }, { qs: { formAction: 'delete' } })
   }}"
 ></form>
 ```
